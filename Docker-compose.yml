@@ -11,9 +11,11 @@ services:
       - ./server:/app # Mount the frontend code directory into the container
     #  - /app/node_modules # Prevent overwriting node_modules in container with local version
   dev-yahtzee-frontend:
-    build: ./
+    build:
+      context: ./client # Path to the backend folder
+      dockerfile: Dockerfile # Dockerfile inside the backend folder
     ports:
       - "3000:3000"
     volumes:
-      - ./:/app
+      - ./client:/app
     command: npm start
