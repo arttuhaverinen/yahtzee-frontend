@@ -1,0 +1,18 @@
+services:
+  dev-yahtzee-backend:
+    build:
+      context: ./server # Path to the backend folder
+      dockerfile: Dockerfile.prod # Dockerfile inside the backend folder
+    ports:
+      - "3001:3001"
+    #    volumes:
+    #      - ./backend/wwwroot:/app/dist
+    volumes:
+      - ./server:/app # Mount the frontend code directory into the container
+    #  - /app/node_modules # Prevent overwriting node_modules in container with local version
+  prod-yahtzee-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000"
